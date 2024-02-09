@@ -1,8 +1,7 @@
-"use client";
-
 import EmptyState from "@/components/EmptyState";
+import React from "react";
 
-const Users = () => {
+const ConversationPage = () => {
   return (
     <div className="hidden lg:block lg:pl-80 h-full md:block md:pl-80">
       <EmptyState />
@@ -10,4 +9,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default ConversationPage;

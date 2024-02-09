@@ -58,13 +58,13 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
   return (
     <div
       className={clsx(
-        `border-gray-200 flex flex-row border-b border-t cursor-pointer hover:bg-gray-100`,
+        `border-gray-200 flex flex-row border-b border-t cursor-pointer hover:bg-gray-100 w-full`,
         selected ? "bg-neutral-100" : "bg-white",
         selected && "md:flex lg:flex hidden"
       )}
       onClick={handleClick}
     >
-      <div className=" flex flex-row py-2 ">
+      <div className="lg:ml-5 md:ml-3 flex flex-row py-2 w-full">
         <div className="py-3 ">
           <Avatar currentUser={otherUser} />
         </div>
@@ -74,7 +74,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
           </div>
           <div className="text sm text-neutral-500 pl-3 ">{lastMessage}</div>
           {date && (
-            <div className="text-xs text-neutral-400 font-light ml-auto">
+            <div className="text-xs text-neutral-400 font-light ml-3 pl-40">
               {date}
             </div>
           )}

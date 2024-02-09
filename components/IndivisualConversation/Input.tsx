@@ -5,7 +5,7 @@ import axios from "axios";
 import { CldUploadButton } from "next-cloudinary";
 import { HiPhoto } from "react-icons/hi2";
 import MessageInput from "./MessageInput";
-import { FieldValues, useForm } from "react-hook-form";
+import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import { HiPaperAirplane } from "react-icons/hi";
 
 const Input = () => {
@@ -29,6 +29,13 @@ const Input = () => {
     });
   };
 
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+    axios.post("/api/messages", {
+      ...data,
+      conversationId: conversationId,
+    });
+  };
+
   return (
     <div className="lg:mt-auto md:mt-auto py-4 px-4 border-t flex items-center gap-2 lg:gap-4">
       <CldUploadButton
@@ -38,7 +45,10 @@ const Input = () => {
       >
         <HiPhoto size={30} />
       </CldUploadButton>
-      <form className="flex items-center gap-2 md:gap-4 lg:gap-4 w-full">
+      <form
+        className="flex items-center gap-2 md:gap-4 lg:gap-4 w-full"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <MessageInput
           id="message"
           register={register}

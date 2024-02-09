@@ -18,9 +18,9 @@ const ConversationList: React.FC<ConversationListProps> = ({
       md:w-80 lg:w-80 sm:overflow-y-auto border-r border-l
       border-gray-200 block sm:w-full w-full sm:left-0 h-full "
     >
-      <div className="px-5">
+      <div className="">
         <div className="flex flex-col">
-          <div className="text-3xl font-bold text-neutral-800 lg:pt-7 pt-5">
+          <div className="text-3xl lg:ml-5 md:ml-3 font-bold text-neutral-800 lg:pt-7 pt-5">
             Messages
           </div>
           <div className="mt-3 border-t">

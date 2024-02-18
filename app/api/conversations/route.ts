@@ -2,6 +2,7 @@ import getCurrentUser from "@/actions/get-current-user"
 import { NextResponse } from "next/server"
 
 import prisma from "@/lib/prismadb"
+import { pusherServer } from "@/lib/pusher";
 
 export async function POST (
     req: Request
@@ -63,6 +64,12 @@ export async function POST (
             },
             include:{
                 users:true
+            }
+        })
+
+        newConversation.users.map((user)=>{
+            if(user.email){
+                pusherServer.trigger(user.email,'conversation:new',newConversation)
             }
         })
 

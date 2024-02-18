@@ -15,7 +15,7 @@ const DeskTopItem: React.FC<DeskTopItemProps> = ({
 }) => {
   return (
     <li className="hover:opacity-80 transition">
-      <Link href={href}>
+      <Link href={href} onClick={onClick}>
         <Icon className="lg:h-8 lg:w-8 h-6 w-6" aria-hidden="true" />
       </Link>
     </li>

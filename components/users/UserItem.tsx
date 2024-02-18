@@ -15,8 +15,6 @@ const UserItem: React.FC<UserItemProps> = ({ user }) => {
   const handleClick = async () => {
     const data = await axios.post("/api/conversations", { userId: user.id });
 
-    console.log(data);
-
     router.push(`/conversations/${data.data.id}`);
   };
   return (

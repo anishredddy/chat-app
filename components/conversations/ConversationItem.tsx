@@ -47,13 +47,14 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
 
   const seenLastMessage = useMemo(() => {
     if (currentUser && conversation.messages.length >= 1) {
-      if (conversation.messages[0].seenIds[-1] !== currentUser.id) {
-        return true;
-      } else {
+      if (conversation.messages[0].seenIds.length == 2) {
+        return false;
+      } else if (conversation.messages[0].seenIds[0] === currentUser.id) {
         return false;
       }
-    } else {
       return true;
+    } else {
+      return false;
     }
   }, [conversation.messages, currentUser]);
 
@@ -66,6 +67,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
 
   const handleClick = async () => {
     // const data = await axios.post("/api/conversations", { userId: user.id });
+    await axios.post(`/api/conversations/${conversation.id}/seen`);
     // console.log(data);
     // router.push(`/conversations/${data.data.id}`);
     router.push(`/conversations/${conversation.id}`);
@@ -89,7 +91,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
           </div>
           <div
             className={clsx(
-              "text sm pl-3 flex flex-row items-center",
+              "text sm pl-3 flex flex-row items-center w-40 truncate",
               seenLastMessage ? "font-medium text-black" : "text-neutral-500"
             )}
           >

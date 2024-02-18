@@ -3,13 +3,16 @@
 import { CompleteConversationType } from "@/types/type";
 import ConversationItem from "./ConversationItem";
 import useConversation from "@/hooks/use-conversation";
+import { User } from "@prisma/client";
 
 interface ConversationListProps {
   coversations: CompleteConversationType[];
+  currentUser?: User | null;
 }
 
 const ConversationList: React.FC<ConversationListProps> = ({
   coversations,
+  currentUser,
 }) => {
   const { conversationId, isOpen } = useConversation();
   return (
@@ -29,6 +32,7 @@ const ConversationList: React.FC<ConversationListProps> = ({
                 conversation={conversation}
                 key={conversation.id}
                 selected={conversation.id === conversationId}
+                currentUser={currentUser}
               />
             ))}
           </div>

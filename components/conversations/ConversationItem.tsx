@@ -9,15 +9,18 @@ import useOtherUser from "@/hooks/use-other-user";
 import { useMemo } from "react";
 import { format } from "date-fns";
 import clsx from "clsx";
+import getCurrentUser from "@/actions/get-current-user";
 
 interface ConversationItemProps {
   conversation: CompleteConversationType;
   selected: boolean;
+  currentUser?: User | null;
 }
 
 const ConversationItem: React.FC<ConversationItemProps> = ({
   conversation,
   selected,
+  currentUser,
 }) => {
   const router = useRouter();
 
@@ -41,6 +44,18 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
       return "click to start a conversation";
     }
   }, [conversation.messages]);
+
+  const seenLastMessage = useMemo(() => {
+    if (currentUser && conversation.messages.length >= 1) {
+      if (conversation.messages[0].seenIds[-1] !== currentUser.id) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return true;
+    }
+  }, [conversation.messages, currentUser]);
 
   const date = useMemo(() => {
     if (conversation.messages.length >= 1) {
@@ -72,7 +87,19 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
           <div className="text-md font-bold py-0 pt-2 px-3">
             {otherUser.name}
           </div>
-          <div className="text sm text-neutral-500 pl-3 ">{lastMessage}</div>
+          <div
+            className={clsx(
+              "text sm pl-3 flex flex-row items-center",
+              seenLastMessage ? "font-medium text-black" : "text-neutral-500"
+            )}
+          >
+            {lastMessage}
+            {seenLastMessage && (
+              <div className="fixed ml-9 pl-40">
+                <div className="rounded-full bg-neutral-700 w-4 h-4" />
+              </div>
+            )}
+          </div>
           {date && (
             <div className="text-xs text-neutral-400 font-light ml-3 pl-40">
               {date}

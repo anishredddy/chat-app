@@ -4,8 +4,8 @@
 
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(76).png" width="470" height="350" alt="Image not found" />
-  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(77).png" width="470" height="350" alt="Image not found" />
+  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(76).png" width="400" height="300" alt="Image not found" />
+  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(77).png" width="400" height="300" alt="Image not found" />
 </div>
 
 <div style="display: flex; justify-content: space-between;">

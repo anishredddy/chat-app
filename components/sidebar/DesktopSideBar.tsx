@@ -5,12 +5,15 @@ import { User } from "@prisma/client";
 import DeskTopItem from "./DeskTopItem";
 import Avatar from "../Avatar";
 import { url } from "inspector";
+import { useState } from "react";
+import SettingsModal from "../SettingsModal";
 
 interface DesktopSideBarProps {
   currentUser: User;
 }
 
 const DesktopSideBar: React.FC<DesktopSideBarProps> = ({ currentUser }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const routes = useRoutes();
   return (
     <>
@@ -28,10 +31,22 @@ const DesktopSideBar: React.FC<DesktopSideBarProps> = ({ currentUser }) => {
             ))}
           </ul>
         </nav>
-        <nav className="mb-7 flex flex-col justify-end items-center">
+        <nav
+          className="mb-7 flex flex-col justify-end items-center cursor-pointer"
+          onClick={() => setIsOpen(true)}
+        >
           <Avatar currentUser={currentUser} />
         </nav>
       </div>
+      {isOpen && (
+        <div className="fixed h-full w-full bg-white z-50">
+          <SettingsModal
+            currentUser={currentUser}
+            isOpen={isOpen}
+            onClose={() => setIsOpen(false)}
+          />
+        </div>
+      )}
     </>
   );
 };

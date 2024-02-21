@@ -9,8 +9,8 @@
 </div>
 
 <div style="display: flex; justify-content: space-between;">
-  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(78).png" width="500" height="350" alt="Image not found" />
-  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(79).png" width="500" height="350" alt="Image not found" />
+  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(78).png" width="400" height="300" alt="Image not found" />
+  <img src="https://github.com/anishredddy/chat-app/blob/main/screenshots/Screenshot%20(79).png" width="400" height="300" alt="Image not found" />
 </div>
 
 This project includes web sockets for real time communication between 2 users

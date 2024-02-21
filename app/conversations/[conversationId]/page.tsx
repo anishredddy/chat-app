@@ -4,6 +4,7 @@ import Header from "@/components/IndivisualConversation/Header";
 import Input from "@/components/IndivisualConversation/Input";
 import ConversationBody from "@/components/IndivisualConversation/ConversationBody";
 import React from "react";
+import ProfileSettings from "@/components/IndivisualConversation/ProfileSettings";
 
 const IndivisualConversationPage = async ({
   params,
@@ -25,6 +26,7 @@ const IndivisualConversationPage = async ({
       <div className="lg:hidden md:hidden pt-20" />
       <div className="h-full flex flex-col">
         <Header conversation={conversation} />
+        <ProfileSettings conversation={conversation} />
         <ConversationBody initialMessages={conversation.messages} />
         <Input />
       </div>

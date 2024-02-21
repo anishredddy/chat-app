@@ -9,6 +9,8 @@ tailwind
 date-fns
 npm i D @types/lodash
 prisma
+react-hook-form
+zustand
 
 ## Getting Started
 

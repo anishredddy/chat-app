@@ -9,7 +9,6 @@ import useOtherUser from "@/hooks/use-other-user";
 import { useMemo } from "react";
 import { format } from "date-fns";
 import clsx from "clsx";
-import getCurrentUser from "@/actions/get-current-user";
 
 interface ConversationItemProps {
   conversation: CompleteConversationType;
@@ -77,7 +76,7 @@ const ConversationItem: React.FC<ConversationItemProps> = ({
       className={clsx(
         `border-gray-200 flex flex-row border-b border-t cursor-pointer hover:bg-gray-100 w-full`,
         selected ? "bg-neutral-100" : "bg-white",
-        selected && "md:flex lg:flex hidden"
+        "md:flex lg:flex hidden"
       )}
       onClick={handleClick}
     >

@@ -1,53 +1,50 @@
 
-import NextAuth, { AuthOptions } from "next-auth"
-import CredentialsProvider from "next-auth/providers/credentials"
-import GithubProvider from "next-auth/providers/github"
-import GoogleProvider from "next-auth/providers/google"
-import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import NextAuth from "next-auth"
 
-import prisma from "@/lib/prismadb"
+import { authOptions } from "@/utils/AuthOptions"
 
-//removed export to fix npm build
-const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
-  providers: [
-    CredentialsProvider({
-      name: 'credentials',
-      credentials: {
-        email: { label: 'email', type: 'text' },
-        password: { label: 'password', type: 'password' }
-      },
-      async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) {
-          throw new Error('Invalid credentials');
-        }
+//moved auth options to a different folder to fix build issue
 
-        const user = await prisma.user.findUnique({
-          where: {
-            email: credentials.email
-          }
-        });
+// export const authOptions: AuthOptions = {
+//   adapter: PrismaAdapter(prisma),
+//   providers: [
+//     CredentialsProvider({
+//       name: 'credentials',
+//       credentials: {
+//         email: { label: 'email', type: 'text' },
+//         password: { label: 'password', type: 'password' }
+//       },
+//       async authorize(credentials) {
+//         if (!credentials?.email || !credentials?.password) {
+//           throw new Error('Invalid credentials');
+//         }
 
-        if (!user || !user?.hashedPassword) {
-          throw new Error('Invalid credentials');
-        }
+//         const user = await prisma.user.findUnique({
+//           where: {
+//             email: credentials.email
+//           }
+//         });
 
-        const isCorrectPassword:boolean = user.hashedPassword===credentials.password
+//         if (!user || !user?.hashedPassword) {
+//           throw new Error('Invalid credentials');
+//         }
 
-        if (!isCorrectPassword) {
-          throw new Error('Invalid credentials');
-        }
+//         const isCorrectPassword:boolean = user.hashedPassword===credentials.password
 
-        return user;
-      }
-    })
-  ],
-  debug: process.env.NODE_ENV === 'development',
-  session: {
-    strategy: "jwt",
-  },
-  secret: process.env.NEXTAUTH_SECRET,
-}
+//         if (!isCorrectPassword) {
+//           throw new Error('Invalid credentials');
+//         }
+
+//         return user;
+//       }
+//     })
+//   ],
+//   debug: process.env.NODE_ENV === 'development',
+//   session: {
+//     strategy: "jwt",
+//   },
+//   secret: process.env.NEXTAUTH_SECRET,
+// }
 
 const handler = NextAuth(authOptions);
 
